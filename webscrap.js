@@ -29,26 +29,38 @@ function delay(ms) {
   const selectField= await page.waitForSelector('select[name="drpArrival"]');
   
 
-  await delay(2000)
+  await page.waitForNavigation();
+
+  // await delay(2000)
 
   const optionValues = await selectField.evaluate((select) => {
+    // const select=document.querySelector('select[name="drpArrival)');
     const options = Array.from(select.options);
-    return options.map((option) => option.innerText);
+    return options.map((option) => option.value);
   });
+  
 
-  console.log(optionValues)
+  // console.log(optionValues)
 
   // for (const optionValue of optionValues) {
   //   await page.select('#drpArrival', optionValue);
+
+  // await page.waitForNavigation();
+
   
-  //   // Wait for any necessary page navigation or data loading
-  //   await page.waitForNavigation();
-  
-  //   // Scrape data from the selected option
+    
   //   const scrapedData = await page.evaluate(() => {
-  //     // Write your scraping logic here to extract data from the page
-  //     // and return the desired data as an object or an array
+  //       const table =document.querySelector('table');
+  //       const tbody = table.querySelector('tbody');
+  //       const rows = Array.from(tbody.querySelectorAll('tr'));
+
+  //       return rows.map(row => {
+  //         const cells = Array.from(row.querySelectorAll('td'));
+  //         return cells.map(cell => cell.innerText.trim());
+  //       });
   //   });
+  // await page.waitForNavigation();
+
   
   //   console.log('Scraped data:', scrapedData);
   // }
